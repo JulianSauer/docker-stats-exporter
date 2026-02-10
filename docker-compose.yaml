@@ -1,0 +1,9 @@
+services:
+  docker-stats-exporter:
+    build: .
+    image: docker-stats-exporter
+    container_name: docker-stats-exporter
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 9100:9100
