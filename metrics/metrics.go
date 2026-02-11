@@ -11,13 +11,13 @@ func cpuPercent(stats *docker.Stats) float64 {
 	cpuDelta := float64(stats.CPUStats.CPUUsage.TotalUsage - stats.PreCPUStats.CPUUsage.TotalUsage)
 	sysDelta := float64(stats.CPUStats.SystemUsage - stats.PreCPUStats.SystemUsage)
 	if sysDelta > 0 && cpuDelta > 0 {
-		return (cpuDelta / sysDelta) * 100.0
+		return cpuDelta / sysDelta
 	}
 	return 0
 }
 
 func memoryPercent(stats *docker.Stats) float64 {
-	return float64(stats.MemoryStats.Usage) / float64(stats.MemoryStats.Limit) * 100.0
+	return float64(stats.MemoryStats.Usage) / float64(stats.MemoryStats.Limit)
 }
 
 func format(stats *docker.Stats, container docker.Container) string {
