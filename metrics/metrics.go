@@ -61,6 +61,7 @@ func MetricsHandler(w http.ResponseWriter, r *http.Request) {
 
 			stats, err := docker.GetStats(client, container.ID)
 			if err != nil {
+				fmt.Println(err.Error())
 				return
 			}
 
